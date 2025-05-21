@@ -2,7 +2,7 @@
 Lower bound : smallest index such that nums[i] >= target
 """
 
-def binary_serch(nums, target):
+def binary_search(nums, target):
     n = len(nums)
     low = 0
     high = n-1
@@ -22,7 +22,7 @@ def binary_serch(nums, target):
 
 nums = [1,1,1,1,2,2,2,3,4,5,5,6,7,7,7,8,8,9,12,12,13]
 target = 20
-print(binary_serch(nums, target))
+print(binary_search(nums, target))
 
 """
 Time Complexity: O(log2(n)) ;where n is number of elements
