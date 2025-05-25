@@ -84,3 +84,9 @@ sll.traverse()            # 5 7 15
 sll.delete(5)
 sll.traverse()            # 7 15
 sll.delete(100)           # Node not Found
+
+"""
+append, traverse, insert_at, delete
+time complexity: O(n)
+space complexity: O(1)
+"""
