@@ -15,3 +15,7 @@ print(lst)
 lst.pop()
 lst.popleft()
 print(lst)
+
+"""
+deque gives all operations in O(1)
+"""
