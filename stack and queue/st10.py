@@ -19,6 +19,6 @@ for i in range(r, -1, -1):
 print(result)
 
 """
-Time complexity O(2n)
+Time complexity O(2 x 2n)
 Space complexity == O(n)
 """
