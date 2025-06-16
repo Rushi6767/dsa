@@ -38,3 +38,10 @@ root.right.left = TreeNode(6)
 res = []
 preorder(root, res)
 print(res)  # Output: [1, 2, 4, 5, 3, 6]
+
+"""
+Time complexity : O(n)
+Space complexity : O(H)
+
+where H is Height of Binary tree (numbers of level)
+"""
