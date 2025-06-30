@@ -2,42 +2,44 @@
 785. Is Graph Bipartite?
 """
 from typing import List
-from collections import deque
 
 class Solution:
+    def dfs(self, current_node, visited, graph, color):
+        visited[current_node] = color
+        for adj_node in graph[current_node]:
+            if visited[adj_node] != -1:
+                if visited[adj_node] == color:
+                    return False
+            else:
+                # ans = self.dfs(adj_node,visited, graph, 1-color)  better approach
+                if color == 0:
+                    ans = self.dfs(adj_node,visited, graph, 1)
+                else :
+                    ans = self.dfs(adj_node,visited, graph, 0)
+                if ans == False:
+                    return False
+        return True
+
+
     def isBipartite(self, graph: List[List[int]]) -> bool:
-        queue = deque()
         n = len(graph)
-        visited = [0] * n
+        visited = [-1] * n
+        for i in range(n):
+            if visited[i] == -1:
+                ans = self.dfs(i, visited, graph, 0)
+                if ans == False:
+                    return False
+        return True
 
-        for i in range(0, n):
-            if visited[i] == 1:
-                continue
-
-            queue.append((0,-1))
-            visited[0] = 1
-            edges = 0
-
-            while queue:
-                node, parent = queue.popleft()
-
-                for adjnode in graph[node]:
-                    edges += 1
-                    if visited[adjnode] == 0:
-                        visited[adjnode] = 1
-                        queue.append((adjnode, node))
-                    
-                    else:
-                        if adjnode != parent:
-                            cycle =  True
-        ed = edges//2
-        if cycle:
-            if ed%2 == 0:
-                return True
-            return False
 
 
 s = Solution()
 # graph = [[1,2,3],[0,2],[0,1,3],[0,2]]
 graph = [[1,3],[0,2],[1,3],[0,2]]
 print(s.isBipartite(graph))
+
+
+"""
+Time complexity : O(n + 2e) == O(n + e)
+Space complexity : O(n)
+"""
