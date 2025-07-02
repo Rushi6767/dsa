@@ -1,5 +1,5 @@
 """
-Dijkstra Algorithm
+Dijkstra Algorithm with priority queue (best in python)
 
 it is not work
 1. single -ve weight
