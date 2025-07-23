@@ -22,7 +22,6 @@ class Solution:
                 ceil = temp.val
                 temp = temp.left
             else:
-                ceil = temp.val
                 temp = temp.right
         return ceil
 
@@ -37,8 +36,9 @@ root.right.right = TreeNode(14)
 s = Solution()
 print(s.findCeil(root, 5))   # Expected output: 6
 print(s.findCeil(root, 1))   # Expected output: 2
-print(s.findCeil(root, 15))  # Expected output: 14 (or last max, depending how you treat > max)
+print(s.findCeil(root, 15))  # -1
 print(s.findCeil(root, 8))
+print(s.findCeil(root, 80))
 
 """
 Time complexity: O(log2 n)
