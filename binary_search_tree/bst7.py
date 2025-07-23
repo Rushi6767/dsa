@@ -15,6 +15,7 @@ class Solution:
         while current :
             if current.left is None:
                 result.append(current.val)
+                # print(current.val, end=" ")  # Directly process the value
                 current = current.right
             else:
                 predessor = current.left
@@ -28,6 +29,7 @@ class Solution:
                 else:
                     predessor.right = None
                     result.append(current.val)
+                    # print(current.val, end=" ")  # Directly process the value
                     current = current.right
                 
         return result
@@ -44,5 +46,7 @@ print(s.inorderTraversal(root))
 
 """
 Time complexity : O(n)
-space complexity : O(1)
+space complexity : O(n) if take result list
+
+space complexity : O(1) if use print()
 """
