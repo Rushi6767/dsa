@@ -8,7 +8,7 @@ class TreeNode:
         self.right = right
 
 class Solution:
-    def inorderTraversal(self,root):
+    def preorderTraversal(self,root):
         result = []
         current = root
 
@@ -42,7 +42,7 @@ root.left.right = TreeNode(4)
 root.right.right = TreeNode(7)
 
 s = Solution()
-print(s.inorderTraversal(root))
+print(s.preorderTraversalorderTraversal(root))
 
 """
 Time complexity : O(n)
