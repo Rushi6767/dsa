@@ -12,7 +12,12 @@ n = 3
 # print(climbStairs(n))
 
 """
-2. memoization
+Time complexity : O(2^n)
+Space complexity : O(n)
+"""
+
+"""
+2. Memoization [Top - Down]
 """
 
 def climbStairs(n, dp):
@@ -26,13 +31,14 @@ def climbStairs(n, dp):
 n = 3
 dp = [-1] * (n+1)
 # print(climbStairs(n, dp))
+
 """
 Time complexity : O(n)
 Space complexity : O(n) + O(n)
 """
 
 """
-3. Tabulation
+3. Tabulation [Bottom - Up]
 """
 class Solution:
     def climbStairs(self, n: int) -> int:
@@ -65,6 +71,7 @@ for i in range(2, n):
     prev = curr
 
 print(prev)
+
 """
 Time complexity : O(n)
 Space complexity : O(1)
