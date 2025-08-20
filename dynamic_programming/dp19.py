@@ -1,75 +1,64 @@
-def lcs(i, j, s1, s2):
-    if i < 0 or j < 0:
-        return 0
+from typing import List
+from collections import deque, defaultdict
+import math
 
-    if s1[i] == s2[j]:
-        return 1 + lcs(i-1, j-1, s1, s2)
+class Solution:
+    def maxWeightedPath(self, n: int, weights: List[int], k: int, edges: List[List[int]]) -> int:
+        # Build adjacency list
+        graph = defaultdict(list)
+        for u, v in edges:
+            graph[u].append(v)
+        
+        # DP table: dp[node][edges_used] = max_weight
+        dp = [[-math.inf] * (k + 1) for _ in range(n)]
+        
+        # Base case: start at node 0 with 0 edges used
+        dp[0][0] = weights[0]
+        
+        # Since it's a DAG, we can process nodes in topological order
+        # For simplicity, we'll use BFS approach with DP state
+        
+        # We'll use a queue: (node, edges_used, current_weight)
+        # But since we have DP table, we can process systematically
+        
+        # Alternative: iterate through all possible edge counts
+        for edges_used in range(k + 1):
+            for node in range(n):
+                if dp[node][edges_used] == -math.inf:
+                    continue
+                
+                # Try all neighbors
+                for neighbor in graph[node]:
+                    if edges_used + 1 <= k:
+                        new_weight = dp[node][edges_used] + weights[neighbor]
+                        if new_weight > dp[neighbor][edges_used + 1]:
+                            dp[neighbor][edges_used + 1] = new_weight
+        
+        # Check all possibilities to reach node n-1 with at most k edges
+        result = max(dp[n-1])
+        return result if result != -math.inf else -1
 
-    return max(
-        lcs(i-1, j, s1, s2),
-        lcs(i, j-1, s1, s2)
-    )
+# Test the solution
+def test_solution():
+    sol = Solution()
+    
+    # Test case 1
+    n = 5
+    weights = [2, -1, 3, 4, 5]
+    k = 3
+    edges = [[0,1], [0,2], [1,3], [2,3], [3,4]]
+    
+    result = sol.maxWeightedPath(n, weights, k, edges)
+    print(f"Test 1: {result} (Expected: 14)")
+    
+    # Test case 2 - More complex
+    n = 6
+    weights = [10, -5, 8, 15, -3, 20]
+    k = 4
+    edges = [[0,1], [0,2], [1,3], [2,3], [3,4], [3,5], [4,5]]
+    
+    result = sol.maxWeightedPath(n, weights, k, edges)
+    print(f"Test 2: {result}")
 
-
-s1 = "abcde"
-s2 = "ace"
-print(lcs(len(s1)-1, len(s2)-1, s1, s2))
-
-
-def lcs(i, j, s1, s2, dp):
-    if i < 0 or j < 0:
-        return 0
-
-    if dp[i][j] != -1:
-        return dp[i][j]
-
-    if s1[i] == s2[j]:
-        dp[i][j] = 1 + lcs(i-1, j-1, s1, s2, dp)
-    else:
-        dp[i][j] = max(
-            lcs(i-1, j, s1, s2, dp),
-            lcs(i, j-1, s1, s2, dp)
-        )
-
-    return dp[i][j]
-
-
-s1 = "abcde"
-s2 = "ace"
-n, m = len(s1), len(s2)
-dp = [[-1]*m for _ in range(n)]
-print(lcs(n-1, m-1, s1, s2, dp))
-
-
-s1 = "abcde"
-s2 = "ace"
-n, m = len(s1), len(s2)
-
-dp = [[0]*(m+1) for _ in range(n+1)]
-
-for i in range(1, n+1):
-    for j in range(1, m+1):
-        if s1[i-1] == s2[j-1]:
-            dp[i][j] = 1 + dp[i-1][j-1]
-        else:
-            dp[i][j] = max(dp[i-1][j], dp[i][j-1])
-
-print(dp[n][m])
-
-
-s1 = "abcde"
-s2 = "ace"
-n, m = len(s1), len(s2)
-
-prev = [0]*(m+1)
-
-for i in range(1, n+1):
-    curr = [0]*(m+1)
-    for j in range(1, m+1):
-        if s1[i-1] == s2[j-1]:
-            curr[j] = 1 + prev[j-1]
-        else:
-            curr[j] = max(prev[j], curr[j-1])
-    prev = curr
-
-print(prev[m])
+if __name__ == "__main__":
+    test_solution()
