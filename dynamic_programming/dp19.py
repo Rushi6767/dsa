@@ -174,7 +174,7 @@ s = Solution()
 # print(s.longestCommonSubsequence(text1, text2))
 
 """
-Time complexity : O(2^n + 2^m)
+Time complexity : O(n X m)
 Space complexity : O(n X m)
 dp
 """
@@ -208,7 +208,7 @@ s = Solution()
 print(s.longestCommonSubsequence(text1, text2))
 
 """
-Time complexity : O(2^n + 2^m)
+Time complexity : O(n X m)
 Space complexity : O(m)
 dp
 """
