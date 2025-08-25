@@ -2,6 +2,7 @@
 1143. Longest Common Subsequence
 """
 
+# note : not prefer first one just for logic building
 def backtrac(index, subset, a, res):
     if index == len(a):
         res.append("".join(subset.copy()))
