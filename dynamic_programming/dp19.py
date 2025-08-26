@@ -189,8 +189,6 @@ class Solution:
         n = len(text1)
         m = len(text2)
         prev = [0 for _ in range(m+1)]
-        for ind2 in range(0, m+1):
-            prev[ind2] = 0
 
         for ind1 in range(1, n+1):
             curr = [0 for _ in range(m+1)]
