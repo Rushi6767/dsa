@@ -10,15 +10,17 @@ class Solution:
             return 1 + self.solve(i-1, j-1, t1, t2)
         return max(self.solve(i-1, j, t1, t2), self.solve(i, j-1, t1, t2))
 
-    def MInInsPalindrom(self, text1):
-        text2 = text1[::-1]
+    def minDistance(self, text1, text2):
         i = len(text1)
         j = len(text2)
         res = self.solve(i-1, j-1, text1, text2 )
-        # print(res)
-        return i - res
+        op1 = i - res
+        op2 = j - res
+        return op1 + op2
+        # return i + j - (2 * res)
+    
 
-t1 = "zzazz"
+word1 = "pqrs"
+word2 = "pmr"
 s = Solution()
-print(s.MInInsPalindrom(t1))
-
+print(s.minDistance(word1, word2))
