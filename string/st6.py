@@ -1,54 +1,56 @@
 """
-Frequency map/ dictionary
-store frequency in dictinary
+796. Rotate String
 """
 
-# nums =[5,6,7,7,1,9,1,1,5,1,1]
-# d = {}
 
-# for i in nums:
-#     d[i]=nums.count(i)
+class Solution:
+    def rotateString(self, s: str, goal: str) -> bool:
+        if len(s) != len(goal):
+            return False
+        
+        n = len(s)
 
-# print(d)
+        # O(n)
+        for i in range(n):
+            # O(n) slicing
+            res = s[-1] + s[:-1]
+            if res == goal:
+                return True
+            s = res
+        return False
 
-# nums =[5,6,7,7,1,9,1,1,5,1,1, 8]
-# d = {}
-# c = 1
-# for i in nums:
-#     if i not in d:
-#         d[i]=c
-#     else:
-#         d[i] = c +1
-
-# print(d)
-
-# nums =[5,6,7,7,1,9,1,1,5,1,1,8]
-# d = {}
-
-# for i in nums:
-#     if i not in d:
-#         d[i]=1
-#     else:
-#         d[i] += 1
-
-# print(d)
-
+s = "abcde"
+goal = "cdeab"
+sol = Solution()
+# print(sol.rotateString(s, goal))
 
 """
-Time complexity: O(n)
-Space complexity: O(n)
+Time Complexity : O(n^2)
+Space Complexity : O(n)
 """
-nums =[5,6,7,7,1,9,1,1,5,1,1,8]
-d = {}
 
-for i in nums:
-    d[i] = d.get(i, 0) + 1
-print(d)
 
-# nums =[5,6,7,7,1,9,1,1,5,1,1,8]
-# d = {}
+# optimal solution
 
-# for i in range(0, len(nums)):
-#     d[nums[i]] = d.get(nums[i], 0) + 1
-# print(d)
+class Solution:
+    def rotateString(self, s: str, goal: str) -> bool:
+        if len(s) != len(goal):
+            return False
+        # O(n)
+        double_string = s + s
 
+        # O(n)
+        if goal in double_string:
+            return True
+        else:
+            return False
+
+s = "abcde"
+goal = "cdeab"
+sol = Solution()
+print(sol.rotateString(s, goal))
+
+"""
+Time Complexity : O(n+n) == O(2n) == O(n)
+Space Complexity : O(2n) == O(n)
+"""
